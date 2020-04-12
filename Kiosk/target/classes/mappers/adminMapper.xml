@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.spring.kiosk.mappers.adminMapper">
+  
+  <!-- 
+    create table kio_goods (
+        gdid number not null,
+        gdcate number not null,
+        gdname varchar2(50) not null,
+        gdprice number not null,
+        gdstock number not null,
+        gdimg varchar2(100) not null,
+        gdthumbimg varchar2(100) not null,
+        gddes varchar2(1000) not null
+   -->
+   
+  <!-- 상품 목록 전체 불러오기 -->
+  <select id="goodsList" resultType="com.spring.kiosk.domain.GoodsVO">
+    select gdId, gdCate, gdName, gdPrice, gdStock, gdThumbImg from kio_goods order by gdId desc
+  </select>
+  
+  <insert id="goodsInsert">
+    insert into kio_goods (gdId, gdCate, gdName, gdPrice, gdStock, gdImg)
+      values (gdid_seq.nextval, #{gdCate}, #{gdName}, #{gdPrice}, #{gdStock}, #{gdImg})
+  </insert>
+  
+  <select id="goodsView" resultType="com.spring.kiosk.domain.GoodsVO">
+    select gdCate, gdName, gdPrice, gdStock, gdImg from kio_goods where gdId=#{gdId}
+  </select>
+  
+  <update id="goodsUpdate">
+    update kio_goods set gdCate=#{gdCate}, gdName=${gdName}, gdPrice=#{gdPrice}, gdStock=#{gdStock}, gdImg=#{gdImg} where gdId=#{gdId]
+  </update>
+
+</mapper>
