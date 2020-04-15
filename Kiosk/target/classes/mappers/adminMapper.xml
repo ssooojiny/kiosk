@@ -22,15 +22,18 @@
     select gdId, gdCate, gdName, gdPrice, gdStock, gdThumbImg from kio_goods order by gdId desc
   </select>
   
+  <!-- 상품 등록 -->
   <insert id="goodsInsert">
     insert into kio_goods (gdId, gdCate, gdName, gdPrice, gdStock, gdImg)
       values (gdid_seq.nextval, #{gdCate}, #{gdName}, #{gdPrice}, #{gdStock}, #{gdImg})
   </insert>
   
+  <!-- 상품 상세 -->
   <select id="goodsView" resultType="com.spring.kiosk.domain.GoodsVO">
     select gdCate, gdName, gdPrice, gdStock, gdImg from kio_goods where gdId=#{gdId}
   </select>
   
+  <!-- 상품 수정 -->
   <update id="goodsUpdate">
     update kio_goods set gdCate=#{gdCate}, gdName=${gdName}, gdPrice=#{gdPrice}, gdStock=#{gdStock}, gdImg=#{gdImg} where gdId=#{gdId]
   </update>
